@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace PhoneBook.DataLayer.Repository
 {
+    // main interface
     public interface IGenericRepository<TEntity> where TEntity : class
     {
         Task<IEnumerable<TEntity>> GetAll(Expression<Func<TEntity, bool>> where = null);

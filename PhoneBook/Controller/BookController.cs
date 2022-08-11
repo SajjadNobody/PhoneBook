@@ -10,12 +10,10 @@ namespace PhoneBook.Controller
     [ApiController]
     [EndpointGroupName("v2")]
     [Authorize]
-
     public class BookController : ControllerBase
     {
         #region Add Access to Data Base
         private readonly IUnitOfWork _unitOfWork;
-
         public BookController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -70,7 +68,6 @@ namespace PhoneBook.Controller
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var user = await _unitOfWork.BookRepository.GetById(id);
             await _unitOfWork.BookRepository.Delete(id);
             await _unitOfWork.SaveAsync();
             return Ok();

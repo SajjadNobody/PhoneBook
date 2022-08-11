@@ -11,6 +11,7 @@ namespace PhoneBook.Services.Services
 {
     public class JwtTokenBuilder : IJwtTokenBuilder
     {
+        // use app setting properties for set some descriptor property and key value 
         private readonly AppSetting _siteSetting;
         public JwtTokenBuilder(IOptionsSnapshot<AppSetting> settings)
         {
@@ -19,15 +20,16 @@ namespace PhoneBook.Services.Services
 
         public TokenViewModel JwtGenerations(User user)
         {
+            // security Key 
             var secretKey = Encoding.UTF8.GetBytes(_siteSetting.JwtSetting.Key);
             var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKey),
                 SecurityAlgorithms.HmacSha256Signature);
 
             var claim = _getClaim(user);
+
+            // Token Descriptor
             var description = new SecurityTokenDescriptor
             {
-                //Issuer = "https://localhost:7029",
-                //Audience = "https://localhost:7029",
                 Issuer = _siteSetting.JwtSetting.Issued,
                 Audience =_siteSetting.JwtSetting.Audience,
                 IssuedAt = DateTime.Now,
@@ -36,15 +38,14 @@ namespace PhoneBook.Services.Services
                 SigningCredentials = signingCredentials,
                 Subject = new ClaimsIdentity(claim)
             };
-            var jwtToken = new JwtSecurityTokenHandler();
-            //var securityToken = jwtToken.CreateToken(description);
-            //var jwt = jwtToken.WriteToken(securityToken);
-            //return jwt;
 
+            //make token 
+            var jwtToken = new JwtSecurityTokenHandler();
             var securityToken = jwtToken.CreateJwtSecurityToken(description);
-            return new TokenViewModel(securityToken);
+            return new TokenViewModel(securityToken); // return Token
         }
 
+        // the detail that we want to add them in our token
         private IEnumerable<Claim> _getClaim(User user)
         {
             var list = new List<Claim>

@@ -5,8 +5,7 @@ namespace PhoneBook.DataLayer.Repository
 {
     public interface IUnitOfWork
     {
-        //GenericRepository<Book> BookRepository { get; }
-        //GenericRepository<User> UserRepository { get; }
+        // the interfaces that we want to use them in Controllers
         IBookRepository BookRepository { get; }
         IUserRepository UserRepository { get; }
         Task SaveAsync();

@@ -10,6 +10,7 @@ namespace PhoneBook.DataLayer.Context
 {
     public class ApplicationDbContext : DbContext
     {
+        // make Context (we need this code for creating data base in Code Firt )
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -19,14 +20,16 @@ namespace PhoneBook.DataLayer.Context
         {
             base.OnModelCreating(modelBuilder);
 
+            // make relation with Fluent API 
             modelBuilder.Entity<Book>()
                 .HasOne(x => x.UserBook)
                 .WithMany(x => x.Books)
                 .HasForeignKey(x => x.UserId);
         }
 
+        #region Add our entity to Application DbContext
         public DbSet<Book> Book { get; set; }
         public DbSet<User> User { get; set; }
-
+        #endregion
     }
 }

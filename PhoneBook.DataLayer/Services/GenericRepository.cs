@@ -13,6 +13,7 @@ namespace PhoneBook.DataLayer.Services
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         #region Set TEntity
+        // accessbillity must be protected becuase we want to have these data type in classes that have inheritance with Generic repository
         protected readonly ApplicationDbContext _context;
         protected DbSet<TEntity> _dbset;
         public GenericRepository(ApplicationDbContext Context)

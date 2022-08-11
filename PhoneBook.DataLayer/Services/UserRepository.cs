@@ -11,8 +11,10 @@ using System.Threading.Tasks;
 
 namespace PhoneBook.DataLayer.Services
 {
+    // inheritance this method to generic repository for having all mehods in this class in the future
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
+        // add constroctor ** it's necessary **
         public UserRepository(ApplicationDbContext Context) : base(Context)
         {
         }
@@ -21,7 +23,7 @@ namespace PhoneBook.DataLayer.Services
         {
           var user = await _context.User.Where(x => x.UserName == userName && x.Password == password)
                 .SingleOrDefaultAsync(cancellationToken);
-            return user;
+            return user!; // the (!) it mean, this data type can't be null 
         }
     }
 }
