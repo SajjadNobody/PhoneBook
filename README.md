@@ -6,7 +6,7 @@ this project included a lot things such as :
   2. Full Repository Pattern example
   3. DTO Example 
   4. JWT Athentication 
-  5. Custom Swagger like have lock icon on Controllers API
+  5. Custom Swagger, like have lock icon on Controllers API
   and more ......
 
 You all free to use this project! pls share with your friends! And Don't forget to send comment :-) 
