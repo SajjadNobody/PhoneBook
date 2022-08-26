@@ -9,7 +9,7 @@ this project included a lot things such as :
   5. Custom Swagger, like have lock icon on Controllers API
   and more ......
 
-You all free to use this project! pls share with your friends! And Don't forget to send comment :-) 
+You all free to use this project! pls share with your friends! :-) 
 
 GoodLuck !
 
