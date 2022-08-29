@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PhoneBook.DataLayer.Entities;
 using PhoneBook.DataLayer.Repository;
 using PhoneBook.Dtos;
+using PhoneBook.WebFramework.ApiResult;
 
 namespace PhoneBook.Controller
 {
@@ -22,14 +23,14 @@ namespace PhoneBook.Controller
 
         #region Get
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> Get()
+        public async Task<ApiResult<IEnumerable<User>>> Get()
         {
             var Book = _unitOfWork.BookRepository.GetAll();
             return Ok(Book);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<User>>> Get(int id)
+        public async Task<ApiResult<IEnumerable<User>>> Get(int id)
         {
             var Book = _unitOfWork.BookRepository.GetById(id);
             return Ok(Book);
@@ -38,7 +39,7 @@ namespace PhoneBook.Controller
 
         #region Post and Put
         [HttpPost]
-        public async Task<IActionResult> Insert(BookDtos dto)
+        public async Task<ApiResult<IActionResult>> Insert(BookDtos dto)
         {
             Book Book = new Book()
             {
@@ -51,7 +52,7 @@ namespace PhoneBook.Controller
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UserUpdate(BookDtos dto, int id)
+        public async Task<ApiResult<IActionResult>> UserUpdate(BookDtos dto, int id)
         {
             var Book = await _unitOfWork.BookRepository.GetById(id);
             if (Book != null)
@@ -66,7 +67,7 @@ namespace PhoneBook.Controller
 
         #region Delete
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<ApiResult<IActionResult>> Delete(int id)
         {
             await _unitOfWork.BookRepository.Delete(id);
             await _unitOfWork.SaveAsync();

@@ -40,7 +40,7 @@ builder.Services.AddSwaggerGen(options =>
         Title = "UserApi",
     });
 
-    //if you want to have to version use this and code in useSwaggerUI code 
+    //if you want to have two group swagger, use this and code in useSwaggerUI code 
     //options.SwaggerDoc("v2", new OpenApiInfo
     //{
     //    Version = "v2",
@@ -55,7 +55,7 @@ builder.Services.AddSwaggerGen(options =>
         {
             Password = new OpenApiOAuthFlow
             {
-                TokenUrl = new Uri("/api/User/Login", UriKind.Relative),
+                TokenUrl = new Uri("/api/UserLogin/Login", UriKind.Relative),
             }
         }
     });
